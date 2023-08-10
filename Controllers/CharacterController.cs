@@ -18,7 +18,6 @@ namespace dotnet_rpg.Controllers
             this._characterService = characterService;
         }
 
-        [Authorize ]    
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
         {
@@ -58,6 +57,12 @@ namespace dotnet_rpg.Controllers
                 return NotFound(response);
             }
             return Ok(response);
+        }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> AddCharacterSkill(AddCharacterSkillDto newSkill)
+        {
+            return Ok(await _characterService.AddCharacterSkill(newSkill));
         }
 
     }
